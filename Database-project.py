@@ -1,5 +1,7 @@
 #Database administration program
 
+from modules import DB
+
 #Highscore object
 class Highscore(object):
 
@@ -28,6 +30,8 @@ def New_Highscore():
 
 #runs function New_Highscore
 New_Highscore()
+#DB.create_table()
+DB.dynamic_data_entry(a.game, a.score, a.player_name)
 
 #prints the name of the player who entered his or her highscore
 print("the player who wrote their score is called " + a.player_name)
