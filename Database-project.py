@@ -58,7 +58,7 @@ def load_from_DB(game):
 def tui():
 
     print("Hi what du you want to do?")
-    print("1: Add new highscore\n2: Check existing highscore\n3: Update existing highscore\n4: Delete existing highscore\n5: quit")
+    print("1: Add new highscore\n2: Check existing highscore\n3: Update existing highscore\n4: Delete existing highscore\n5: List all highscores\n6: quit")
 
     #input from user
     user_input = input("")
@@ -86,8 +86,16 @@ def tui():
         game = raw_input("for which game do you want to delete a highscore? ")
         DB.delete(game)
 
-    #quit
+    #list all highscores
+    #note to myself: fix the u (for unicode). run the program and you will see
     elif user_input == 5:
+        data = DB.read_all()
+        print("Game Score Player")
+        for row in data:
+            print(row)
+
+    #quit
+    elif user_input == 6:
         DB.close()
         exit()
 

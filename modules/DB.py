@@ -34,6 +34,12 @@ def read(game):
     #returns the data
     return data
 
+def read_all():
+    c.execute('SELECT * FROM Highscores')
+    data = c.fetchall()
+    return data
+
+
 
 def update(new_score, game):
     #dynamically updating data_entry. Note the "," after new score. the comma is needed by sglite
