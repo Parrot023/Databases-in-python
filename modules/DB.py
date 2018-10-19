@@ -35,10 +35,22 @@ def read(game):
     return data
 
 
-def update_DB(new_score, game):
+def update(new_score, game):
     #dynamically updating data_entry. Note the "," after new score. the comma is needed by sglite
-    #if you forget the "," sqlite will se the input as an integer.
+    #idont know why the comma is needed thats just how it is
     c.execute("UPDATE Highscores SET Score = ? WHERE Game = ?", (new_score, game))
     #commit/saves changes
     conn.commit()
     print("changed score where game = Snake")
+
+
+def delete(game):
+    c.execute('DELETE FROM Highscores WHERE Game = ?', (game,))
+    conn.commit()
+
+
+def close():
+    #closes the connection to the cursor
+    c.close
+    #closes the connection to the database
+    conn.close()

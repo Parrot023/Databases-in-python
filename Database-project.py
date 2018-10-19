@@ -41,14 +41,67 @@ def load_from_DB(game):
 
 
 #creates a table in the database if it doesnt exist
-DB.create_table()
-# new object (highscore)
-# a = Create_Highscore()
+#new object (highscore)
+#DB.create_table()
+#a = Create_Highscore()
 # saves the object a to the database
-# save_to_DB(a)
+#save_to_DB(a)
 # loads a highscore from the database
-a = load_from_DB("Andraes")
-print(a.score)
+#and creates an object
+#a = load_from_DB("Andraes")
+#updates a highscore in the database
+#DB.update(30, "Andraes")
+#deletes and highscore in the database
+#DB.delete("Andraes")
 
-#prints the name of the player who entered his or her highscore
-print("i did my thing")
+#text user interface (i dont know if u can say that, but who cares)
+def tui():
+
+    print("Hi what du you want to do?")
+    print("1: Add new highscore\n2: Check existing highscore\n3: Update existing highscore\n4: Delete existing highscore\n5: quit")
+
+    #input from user
+    user_input = input("")
+
+    #5 different actions the user can choose
+    #new highscore
+    if user_input == 1:
+        a = Create_Highscore()
+        save_to_DB(a)
+
+    #check existing highscore
+    elif user_input == 2:
+        game = raw_input("for which game do you want to check a highscore? ")
+        a = load_from_DB(game)
+        print("the highscore for the game " + str(game) + " is " + str(a.score))
+
+    #updating existing score
+    elif user_input == 3:
+        score = input("what is the new score ")
+        game = raw_input("in what game did the player get " + str(score))
+        DB.update(score, game)
+
+    #deleting existing score
+    elif user_input == 4:
+        game = raw_input("for which game do you want to delete a highscore? ")
+        DB.delete(game)
+
+    #quit
+    elif user_input == 5:
+        DB.close()
+        exit()
+
+    else:
+        print("cant recognise user input (try again)")
+
+DB.create_table()
+
+while 1 == 1:
+
+    tui()
+
+    print("\n")
+
+
+
+#print("i did my thing")
