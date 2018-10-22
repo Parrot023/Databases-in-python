@@ -1,1 +1,1 @@
-This project is about relearning and learning about Databases with python
+This project is about learning Databases with python
