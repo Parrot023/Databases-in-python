@@ -1,8 +1,6 @@
 #Database administration program
 import sqlite3
-#from modules import DB
 
-#DB is a selfmade module to insert, read and edit the Database
 
 #Highscore object
 class Highscore():
@@ -89,10 +87,6 @@ def Create_Highscore():
     #returns the created object
     return Highscore(game, score, player_name)
 
-#saves a given object to the Highscores database
-def save_to_DB(object_name):
-    DB.data_entry(object_name.game, object_name.score, object_name.player_name)
-
 #loads a highscore from DB and creates a highscore object from it
 def load_from_DB(game):
     #read the data about the game from the database
@@ -113,7 +107,8 @@ def tui():
     #new highscore
     if user_input == 1:
         a = Create_Highscore()
-        save_to_DB(a)
+        #saves the object to the DB
+        DB.data_entry(a.game, a.score, a.player_name)
 
     #check existing highscore
     elif user_input == 2:
@@ -124,7 +119,7 @@ def tui():
     #updating existing score
     elif user_input == 3:
         score = input("what is the new score ")
-        game = raw_input("in what game did the player get " + str(score) + " ")
+        game = raw_input("in what game did the player get " + str(score) + "  ")
         DB.update(score, game)
 
     #deleting existing score
@@ -157,19 +152,3 @@ while 1 == 1:
     tui()
 
     print("\n")
-
-
-#creates a table in the database if it doesnt exist
-#new object (highscore)
-#DB.create_table()
-#a = Create_Highscore()
-# saves the object a to the database
-#save_to_DB(a)
-# loads a highscore from the database
-#and creates an object
-#a = load_from_DB("Andraes")
-#updates a highscore in the database
-#DB.update(30, "Andraes")
-#deletes and highscore in the database
-#DB.delete("Andraes")
-#print("i did my thing")
